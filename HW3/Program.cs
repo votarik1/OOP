@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace HW3
 {
@@ -11,6 +14,17 @@ namespace HW3
             myBankAccount.TopUp(notMyBankAccount, 25000);
             myBankAccount.Print();
             notMyBankAccount.Print();
+            Console.WriteLine(Reverse("Hello World"));
+        }
+
+        public static string Reverse(string input)
+        {
+            StringBuilder reverseString = new StringBuilder();
+            for (int i = input.Length-1; i >= 0 ; i--)
+            {
+                reverseString.Append(input[i]);
+            }
+            return reverseString.ToString();
         }
     }
 }
