@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace HW3
 {
     //Этот класс получился после выполнения всех пунктов д/з
-    class BankAccount2
+    class BankAccount
     {
         private static int _nextId = 0;
         private int _id;
         private decimal _balance;
         private AccountTypes _accountType;
 
-        public BankAccount2():this(0, AccountTypes.Standart) { }
-        public BankAccount2(decimal balance) : this(balance, AccountTypes.Standart) { }
-        public BankAccount2(AccountTypes accountType):this (0,accountType) { }
-        public BankAccount2(decimal balance, AccountTypes accountType)
+        public BankAccount():this(0, AccountTypes.Standart) { }
+        public BankAccount(decimal balance) : this(balance, AccountTypes.Standart) { }
+        public BankAccount(AccountTypes accountType):this (0,accountType) { }
+        public BankAccount(decimal balance, AccountTypes accountType)
         {
             Id = _nextId;
             _nextId++;
@@ -52,7 +52,13 @@ namespace HW3
                 return false;
             }
         }
-
-
+        public bool TopUp(BankAccount DebitAccount, decimal money)
+        {
+            if (DebitAccount.GetFrom(money))
+            {
+                return PutInto(money);
+            }
+            return false;
+        }
     }
 }
