@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    enum AccountTypes { Standart, Premium, Super_Premium, Super_Mega_Premium, Super_Mega_Premium_Gold };
+   public enum AccountTypes { Standart, Premium, Super_Premium, Super_Mega_Premium, Super_Mega_Premium_Gold };
 }
 

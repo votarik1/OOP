@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    //Этот класс получился после выполнения всех пунктов д/з
-    class BankAccount
+    public sealed class BankAccount
     {
         private static int _nextId = 0;
         private int _id;
@@ -29,12 +28,53 @@ namespace Bank
         public decimal Balance { get { return _balance; } set { _balance = value; } }
         public AccountTypes AccountType { get { return _accountType; } set { _accountType = value; } }
 
-        public void Print()
+        public static bool operator ==(BankAccount a, BankAccount b)
         {
-            Console.WriteLine($"Id: {Id}");
-            Console.WriteLine($"Balance: {Balance}");
-            Console.WriteLine($"AccountType: {AccountType}");
+            if (a is null|| b is null)
+            {
+                if (a is null && b is null )
+                {
+                    return true;
+                }
+                return false;
+            }
+            if (a.Id==b.Id&& a.Balance==b.Balance && a.AccountType==b.AccountType)
+            {
+                return true;
+            }
+            return false;
+        
         }
+
+        public static bool operator !=(BankAccount a, BankAccount b) => !(a == b);
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                return this == (BankAccount)obj; // если obj не приведётся или там null вернётся false
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
+            output.AppendLine($"Id: {Id}");
+            output.AppendLine($"Balance: {Balance}");
+            output.AppendLine($"AccountType: {AccountType}");
+            return output.ToString();
+        }
+
         public bool PutInto(decimal money)
         {
             Balance += money;
